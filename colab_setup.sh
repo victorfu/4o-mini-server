@@ -8,6 +8,7 @@ if [ $# -eq 0 ]; then
 fi
 
 NGROK_TOKEN=$1
+NGROK_URL=$2
 
 # Clone the repository
 git clone https://github.com/victorfu/4o-mini-server.git
@@ -20,6 +21,10 @@ pip install fastapi uvicorn pyngrok python-dotenv httpx
 
 # Create .env file with provided ngrok token
 echo "NGROK_TOKEN=$NGROK_TOKEN" > .env
+
+if [ -n "$NGROK_URL" ]; then
+    echo "NGROK_URL=$NGROK_URL" >> .env
+fi
 
 # Run the server
 python main.py 
