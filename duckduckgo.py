@@ -48,7 +48,7 @@ async def chat_completions(request: OpenAIRequest):
     status_url = "https://duckduckgo.com/duckchat/v1/status"
     chat_url = "https://duckduckgo.com/duckchat/v1/chat"
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30.0) as client:
         resp = await client.get(status_url, headers={"x-vqd-accept": "1", **headers})
         if resp.status_code != 200:
             raise HTTPException(status_code=resp.status_code, detail=resp.text)
@@ -59,7 +59,7 @@ async def chat_completions(request: OpenAIRequest):
         "messages": [message.dict() for message in request.messages],
     }
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=120.0) as client:
         resp = await client.post(
             chat_url, json=payload, headers={"x-vqd-4": vqd4, **headers}
         )
