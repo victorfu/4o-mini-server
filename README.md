@@ -16,6 +16,12 @@ git clone https://github.com/victorfu/4o-mini-server.git
 pip install -r requirements.txt
 ```
 
+or
+
+```
+pip install fastapi uvicorn pyngrok python-dotenv httpx
+```
+
 3. Set the NGROK_TOKEN environment variable:
 
 ```
@@ -32,6 +38,16 @@ NGROK_TOKEN=<your_ngrok_token>
 
 ```
 python main.py
+```
+
+## Colab Installation
+
+```
+!git clone https://github.com/victorfu/4o-mini-server.git
+%cd 4o-mini-server/
+!pip install fastapi uvicorn pyngrok python-dotenv httpx
+!echo "NGROK_TOKEN=your_ngrok_token_here" > .env
+!python main.py
 ```
 
 ## API Usage
