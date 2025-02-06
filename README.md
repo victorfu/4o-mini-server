@@ -55,9 +55,9 @@ You can either run the commands directly:
 Or use the provided shell script:
 
 ```bash
-wget https://raw.githubusercontent.com/victorfu/4o-mini-server/main/colab_setup.sh
-chmod +x colab_setup.sh
-./colab_setup.sh your_ngrok_token_here
+!wget https://raw.githubusercontent.com/victorfu/4o-mini-server/master/colab_setup.sh
+!chmod +x colab_setup.sh
+!./colab_setup.sh your_ngrok_token_here
 ```
 
 The script requires your ngrok token as an argument. If you run it without the token, you'll see usage instructions:
