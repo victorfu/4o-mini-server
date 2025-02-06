@@ -10,6 +10,16 @@ app = FastAPI()
 load_dotenv()
 
 
+@app.get("/")
+async def root():
+    return ":D"
+
+
+@app.get("/api/version")
+async def version():
+    return {"version": "1.0.0"}
+
+
 @app.post("/api/chat/completions")
 async def chat_completion_endpoint(request: OpenAIRequest):
     return await chat_completions(request)
