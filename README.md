@@ -42,12 +42,30 @@ python main.py
 
 ## Colab Installation
 
+You can either run the commands directly:
+
 ```
 !git clone https://github.com/victorfu/4o-mini-server.git
 %cd 4o-mini-server/
 !pip install fastapi uvicorn pyngrok python-dotenv httpx
 !echo "NGROK_TOKEN=your_ngrok_token_here" > .env
 !python main.py
+```
+
+Or use the provided shell script:
+
+```bash
+wget https://raw.githubusercontent.com/victorfu/4o-mini-server/main/colab_setup.sh
+chmod +x colab_setup.sh
+./colab_setup.sh your_ngrok_token_here
+```
+
+The script requires your ngrok token as an argument. If you run it without the token, you'll see usage instructions:
+
+```bash
+./colab_setup.sh
+# Error: NGROK_TOKEN is required
+# Usage: ./colab_setup.sh <your_ngrok_token>
 ```
 
 ## API Usage
