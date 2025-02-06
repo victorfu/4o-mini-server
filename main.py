@@ -12,7 +12,11 @@ load_dotenv()
 
 @app.get("/")
 async def root():
-    return ":D"
+    openai_request = OpenAIRequest(
+        messages=[{"role": "user", "content": "write a random message to welcome me"}],
+    )
+    response = await chat_completions(openai_request)
+    return response["choices"][0]["message"]["content"]
 
 
 @app.get("/api/version")

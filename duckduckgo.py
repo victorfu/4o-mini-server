@@ -13,7 +13,7 @@ class Message(BaseModel):
 
 
 class OpenAIRequest(BaseModel):
-    model: str
+    model: str = "gpt-4o-mini"
     messages: List[Message]
     stream: Optional[bool] = False
 
