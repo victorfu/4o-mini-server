@@ -30,17 +30,20 @@ async def chat_completion_endpoint(request: OpenAIRequest):
 
 
 if __name__ == "__main__":
-    ngrok_token = os.getenv("NGROK_TOKEN")
-    if ngrok_token:
-        ngrok.set_auth_token(ngrok_token)
-    else:
-        print("Warning: NGROK_TOKEN not found in environment variables")
+    env = os.getenv("NGROK_ENABLED", "true")
 
-    ngrok_url = os.getenv("NGROK_URL")
-    if ngrok_url:
-        ngrok_tunnel = ngrok.connect(8000, domain=ngrok_url)
-    else:
-        ngrok_tunnel = ngrok.connect(8000)
-    print(f"Public URL: {ngrok_tunnel.public_url}")
+    if env == "true":
+        ngrok_token = os.getenv("NGROK_TOKEN")
+        if ngrok_token:
+            ngrok.set_auth_token(ngrok_token)
+        else:
+            print("Warning: NGROK_TOKEN not found in environment variables")
+
+        ngrok_url = os.getenv("NGROK_URL")
+        if ngrok_url:
+            ngrok_tunnel = ngrok.connect(8000, domain=ngrok_url)
+        else:
+            ngrok_tunnel = ngrok.connect(8000)
+        print(f"Public URL: {ngrok_tunnel.public_url}")
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
